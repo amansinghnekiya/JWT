@@ -14,6 +14,8 @@ gem 'jwt'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
+gem 'chronic'
+
 
 
 # Use the Puma web server [https://github.com/puma/puma]

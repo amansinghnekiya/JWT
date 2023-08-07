@@ -6,4 +6,10 @@ class User < ApplicationRecord
   validates :password,
             length: { minimum: 6 },
             if: -> { new_record? || !password.nil? }
+  enum role: { fan: 0, admin: 1}
+  validates :role, inclusion: { in: roles.keys }
+
+  has_many :events
+  has_many :bookings
+  has_many :favourites
 end

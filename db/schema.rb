@@ -10,7 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_05_072930) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_07_050852) do
+  create_table "bookings", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_bookings_on_event_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title"
+    t.datetime "date"
+    t.string "location"
+    t.integer "ticket_availability"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "category"
+    t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "favourites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_favourites_on_event_id"
+    t.index ["user_id"], name: "index_favourites_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "username"
@@ -18,6 +49,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_05_072930) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role"
   end
 
+  add_foreign_key "bookings", "events"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "events", "users"
+  add_foreign_key "favourites", "events"
+  add_foreign_key "favourites", "users"
 end

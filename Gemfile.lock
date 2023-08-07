@@ -79,6 +79,7 @@ GEM
       image_processing (~> 1.1)
       marcel (~> 1.0.0)
       ssrf_filter (~> 1.0)
+    chronic (0.10.2)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     date (3.3.3)
@@ -182,6 +183,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
   carrierwave
+  chronic
   debug
   jwt
   puma (~> 5.0)
