@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/search_by_event', to: 'events#search_by_event'
+  get '/search', to: 'events#search'
   get '/search_by_category', to: 'events#search_by_category'
   get '/search_by_location', to: 'events#search_by_location'
   post '/add_event_to_favourite', to: 'favourites#add_event_to_favourite'

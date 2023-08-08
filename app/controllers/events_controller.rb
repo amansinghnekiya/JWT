@@ -32,10 +32,10 @@ class EventsController < ApplicationController
     end 
   end
 
-  def search_by_event
-    @events = Event.where("title LIKE ?", "%#{params[:title]}%")
-    if @events.any?
-      render json: @events, status: :ok
+  def search
+    @result = Event.where('category LIKE ?', "%#{params[:search]}%").or(Event.where('location LIKE ?', "%#{params[:search]}%"))
+    if @result.any?
+      render json: @result, status: :ok
     else
       render json: { errors: "Event not found" }
     end
@@ -58,8 +58,6 @@ class EventsController < ApplicationController
       render json: { errors: "No enents at this location" }
     end
   end
-
-  
 
   private
 
