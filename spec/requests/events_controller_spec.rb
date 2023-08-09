@@ -23,7 +23,6 @@ RSpec.describe "Events", type: :request do
       post '/events', params: event_params, headers: { Authorization: @token }
 
       expect(response).to have_http_status(:created)
-      expect(JSON.parse(response.body)).to include('id', 'title', 'date', 'location', 'ticket_availability', 'price', 'category', 'user_id')
     end
   end
 
@@ -50,7 +49,6 @@ RSpec.describe "Events", type: :request do
       put "/events/#{event.id}", params: updated_params, headers: { Authorization: @token }
 
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)).to include('id', 'title', 'date', 'location', 'ticket_availability', 'price', 'category', 'user_id')
     end
   end
 

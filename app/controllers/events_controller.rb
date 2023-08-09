@@ -2,10 +2,9 @@ class EventsController < ApplicationController
   before_action :authorize_request
   
   def create
-    @event = Event.new(event_params)
-    user = User.find_by_id!(params[:user_id])
-
-    if user.role == "admin"
+    @event = @current_user.events.new(event_params)
+    
+    if @current_user.role == "admin"
       if @event.save
         render json: @event, status: :created
       else
